@@ -29,11 +29,11 @@ exe: all
 	@echo "\n     - Done -"
 
 clean:
-	@echo $(CURSIVE)$(GRAY) "     - Removing $(NAME)..." $(NONE)
-	@rm -rf $(NAME)
-
-fclean: clean
 	@echo $(CURSIVE)$(GRAY) "     - Removing object files..." $(NONE)
 	@rm -rf $(OBJ)
+
+fclean: clean
+	@echo $(CURSIVE)$(GRAY) "     - Removing $(NAME)..." $(NONE)
+	@rm -rf $(NAME)
 
 re: fclean all

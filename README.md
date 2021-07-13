@@ -6,7 +6,7 @@ The program first initializes the mlx and opens a window, saving all data needed
 
 Then creates an image in memory based on a .xpm file and draws it on the window.
 
-And finally, hooks specific functions to the key-pressed event and the repetition of the loop. 
+Finally, it hooks specific functions to the key-pressed event and the repetition of the loop. 
 When a key is pressed, the window is cleared, the position of the sprite is updated based on which of the arrows has been pressed, and it is redrawn in the new position.
 Hooked to the loop is a function that slightly moves the square up and down every 10 frames to make it look animated.
 
@@ -18,8 +18,8 @@ The Makefile has the following rules:
 |-|-|
 | all  |  Compiles the code and generates the program _sample.out_ |
 | exe |  Compiles and runs the program |
-| clean|  Deletes the _sample.out_ file |
-| fclean| Makes _clean_ and removes the object files (*.o) |
+| clean|  Deletes the objects files (*.o) |
+| fclean| Makes _clean_ and removes the _sample.out_ file |
 | re| Makes _fcleam_ and _all_ again |
 
 ### Other references
