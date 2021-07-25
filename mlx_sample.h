@@ -1,7 +1,7 @@
 #ifndef SAMPLE_LIB_H
 # define SAMPLE_LIB_H
 
-#include <mlx.h>
+# include <mlx.h>
 
 // ----------------------------------
 // MACROS
@@ -11,7 +11,7 @@
 # endif
 
 // ----------------------------------
-// STRUCS
+// STRUCTS
 
 typedef struct	s_vector
 {

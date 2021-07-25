@@ -8,7 +8,7 @@ int	ft_input(int key, void *param)
 {
 	t_program *program = (t_program *)param;
 
-	// mlx function that clears all images on screen
+	// mlx function that clears the window
 	mlx_clear_window(program->mlx, program->window.reference);
 
 	// move in a direction based on the key
@@ -37,13 +37,13 @@ int	ft_update (void *param)
 	// a static that saves how many frames have passed
 	static int	frame;
 
-	// add a frame and every x frames, change the position by 1 pixel
+	// add a frame and every x frames change the position by 1 pixel
 	// so it looks like its animated
 	frame++;
 	if (frame == ANIMATION_FRAMES)
 		program->sprite.position.y += 1;
 	// every x*2 frames go back that pixel to loop the animation
-	if (frame >= ANIMATION_FRAMES * 2)
+	else if (frame >= ANIMATION_FRAMES * 2)
 	{
 		program->sprite.position.y -= 1;
 		frame = 0;

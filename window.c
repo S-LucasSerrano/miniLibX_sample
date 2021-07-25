@@ -16,8 +16,7 @@ t_window	ft_new_window(void *mlx, int widht, int height, char *name)
 	window.size.x = widht;
 	window.size.y = height;
 
-	/* now we 'hook' the function ft_close() to the close window event
-	see: https://harm-smits.github.io/42docs/libs/minilibx/events.html */
+	// Now we 'hook' the function ft_close() to the closing window event
 	mlx_hook(window.reference, 17, 0, ft_close, 0);
 
 	return (window);

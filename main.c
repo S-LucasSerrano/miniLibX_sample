@@ -4,7 +4,7 @@ int main()
 {
 	// ----------
 
-	// strcuts defined in the mlx_sample.h file
+	// Struct with all the info that I need to run the program (mlx_sample.h)
 	t_program program;
 	// mlx function that initialize the mlx and returns a pointer to it.
 	program.mlx = mlx_init();
@@ -15,7 +15,7 @@ int main()
 
 	// Create a new image/sprite (image.c)
 	program.sprite = ft_new_sprite(program.mlx, "block.xpm");
-	// mlx function that prints an image into a window at the indicated coordinates
+	// mlx function that draws an image into a window at the given position
 	mlx_put_image_to_window(program.mlx, program.window.reference,
 		program.sprite.reference, program.sprite.position.x, program.sprite.position.y);
 
@@ -28,15 +28,6 @@ int main()
 
 	// ----------
 
-	// mlx constant loop that keeps the window open and detects the events and input
+	// mlx constant loop that keeps the detects the events
 	mlx_loop(program.mlx);
 }
-
-/* 
-* For more, see the manuals:
-*	man /usr/share/man/man3/mlx.1
-*	man /usr/share/man/man3/mlx_new_window.1
-*	man /usr/share/man/man3/mlx_pixel_put.1
-*	man /usr/share/man/man3/mlx_new_image.1
-*	man /usr/share/man/man3/mlx_loop.1
-*/
