@@ -91,7 +91,7 @@ char	*mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *size_line, int 
 ````
 This would return you a char array containing all pixels of the image and saving to the pointers passed as parameters the corresponding information about the image.
 * ``bits_per_pixel``. It tells you how many chars of the array represent one pixel of your image. Usually each four characters are representing one single pixel.
-* ``size_line``. Because the pixels of the image are not stored in a 2D table but all in a row in a single array. This tells you how many pixels are in each line of your image. Allowing you to get access to every pixel on the image with the following formula: _`X_position + bit_per_pixel * Line size * Y_position`_, that will give you the first char of the pixel.
+* ``size_line``. Because the pixels of the image are not stored in a 2D table but all in a row in a single array. This tells you how many pixels are in each line of your image. Allowing you to get access to every pixel on the image with the following formula: _`X_position * bit_per_pixel + Line_size * Y_position`_, that will give you the first char of the pixel.
 * ``endian``. Can be either 0 or 1 and it defines how colors are stored. For us in 42 it will always be stored in the same way: the first character would be red, then green, blue, and finally the alpha or transparency of the pixel. Each value going from 0 to 255.
 
 How I save and manage it in this project is by creating a struct with all the data needed for an image.
