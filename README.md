@@ -46,7 +46,7 @@ int	hooked_function(void *param);
 ````
 It has to return an int, but this value is never used for anything as far as I know. As you can see, it only can receive a pointer to one variable, so what is usually done is pass a pointer to a struct that contains all the info that your function needs to work. What I do is make this function receive the whole program struct so it has access to the mlx pointer, the window and anything else it may need.
 
-Here you have a list with all the events and masks. I’ve never really used masks for anything and don’t really know how they work, but, well, there they are:
+Here you have a list with all the events and masks. I’ve never really use masks for anything and don’t really know how they work, but, well, there they are:
 https://harm-smits.github.io/42docs/libs/minilibx/events.html
 
 Some useful events:
@@ -59,9 +59,9 @@ Some useful events:
 | 6 | Motion |
 | 14 | Window closed |
 
-The window closed event was, for some reason, extremely difficult to find and it is essential for this projects. Basically, by default, when you close the window, you don’t stop the mlx_loop, so your program keeps infinitely running. You need to hook a function that makes ``exit(0);`` to this event, for the program to end when the window is closed.
+By default when you close the window, you don’t stop the mlx_loop, so your program keeps infinitely running. You need to hook a function that makes ``exit(0);`` to the closing window event, for the program to end when the window is closed.
 
-I finally found it on this guide. That has more info about the miniLibX, and a lot of links beyond the mlx library, with useful resources for the cube 3D, fdf and fractal projects. Check it out:
+This other guide has more info about the miniLibX, and a lot of links beyond the mlx library, with useful resources for the cube 3D, fdf and fractal projects. Check it out:
 https://github.com/qst0/ft_libgfx#the-graphics-branch
 
 A couple of more things about hooks.
@@ -71,7 +71,7 @@ When you hook a function to a key related event, it needs to have a different pr
 int	key_hooked_function(int keycode, void *param);
 ````
 
-There are also more hook functions. Being the most important and useful the ``mlx_loop_hook()`` that triggers each repetition of the loop. Calling your function each frame. For more on these other hook functions see: 
+There are also more hook functions. The most important and useful is the ``mlx_loop_hook()`` that triggers each repetition of the loop. Calling your function each frame. For more on these other hook functions see: 
 https://harm-smits.github.io/42docs/libs/minilibx/prototypes.html#hooks
 
 
@@ -90,9 +90,9 @@ To manipulate the pixels of an image you first need to call `mlx_get_data_addr()
 char	*mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *size_line, int *endian);
 ````
 This would return you a char array containing all pixels of the image and saving to the pointers passed as parameters the corresponding information about the image.
-* ``bits_per_pixel``. It tells you how many chars of the array represent one pixel of your image. Usually each four characters are representing one single pixel.
-* ``size_line``. Because the pixels of the image are not stored in a 2D table but all in a row in a single array. This tells you how many pixels are in each line of your image. Allowing you to get access to every pixel on the image with the following formula: _`X_position * bit_per_pixel + Line_size * Y_position`_, that will give you the first char of the pixel.
-* ``endian``. Can be either 0 or 1 and it defines how colors are stored. For us in 42 it will always be stored in the same way: the first character would be red, then green, blue, and finally the alpha or transparency of the pixel. Each value going from 0 to 255.
+* ``bits_per_pixel``. It tells you the number of bits needed to represent a pixel color.
+* ``size_line``. Because the pixels of the image are not stored in a 2D table but all in a row in a single array. This tells you how many pixels are in each line of your image, and each pixel is represented by 4 chars. Allowing you to get access to every pixel on the image with the following formula: _`X_position * 4 + Line_size * Y_position`_, that will give you the first char of the pixel.
+* ``endian``. Can be either 0 or 1 depending on the system and it defines how colors are stored. For us in 42 I believe it’s always stored in the same way: the first character is blue, then green, red, and finally the alpha or transparency of the pixel. Each value goes from 0 to 255. _You have an example of how to use this and change every pixel of an image in the color.c file_.
 
 How I save and manage it in this project is by creating a struct with all the data needed for an image.
 ````c
@@ -118,15 +118,15 @@ t_image	ft_new_sprite(void *mlx, char *path)
 }
 ````
 
-To draw the image on the window, you just have to call ``mlx_put_image_to_window()``. Passing the pointer to the window, the image and the position. The (0,0) coordinates of the window and the images are in the top left corner.
+To draw the image on the window, you just have to call ``mlx_put_image_to_window()``. Passing the pointer to the window, the image and the position. The (0,0) coordinates of the window and the images are at the top left corner.
 ````c
 mlx_put_image_to_window(void *window_ptr, void *image_ptr, int x_position, int y_position);
 ````
 
 
-### Colours
-Some functions, like `mlx_pixel_put()` or `mlx_string_put()` will ask you to pass a color as an int. This is referring to the hexadecimal value written like ``0xTTRRGGBB``. You can find the hexadecimal value of a colour in any colour selector, (search for _colour selector_ on google). Take care that most of them only give you the hex value for the Red, Green and Blue. So you may need to add the transparency in front of those.
-You can generate your own hex colour values from the TRGB using bit shifting. More on that here:
+### Colors
+Some functions, like `mlx_pixel_put()` or `mlx_string_put()` will ask you to pass a color as an int. This is referring to the hexadecimal value written like ``0xTTRRGGBB``. You can find the hexadecimal value of a color in any color selector, (search for _colour selector_ on google, it will also give you the RGB values of it). Take care that most of them only give you the hex value for the Red, Green and Blue. So you may need to add the transparency in front of those.
+You can generate your own hex colour values using bit shifting. More on that here:
 https://harm-smits.github.io/42docs/libs/minilibx/colors.html
 
 And more on images and colours here:
@@ -141,7 +141,7 @@ The program first initializes the mlx and opens a window, saving all data needed
 Then creates an image in memory based on a .xpm file and draws it on the window.
 
 Finally, it hooks specific functions to the key-pressed event and the repetition of the loop.
-* When a key is pressed, the window is cleared, the position of the sprite is updated based on which of the arrows has been pressed, and it is redrawn in the new position.
+* When a key is pressed, the window is cleared, the position of the sprite is updated based on which of the arrows has been pressed, and it is redrawn in the new position. You can press the keys R, G or B to change the image to a colored square.
 * Hooked to the loop is a function that slightly moves the square up and down every 10 frames to make it look animated.
 
 All the code is commented step by step, check it out! ^^^.

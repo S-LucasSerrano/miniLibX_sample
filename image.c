@@ -10,8 +10,6 @@ t_image ft_new_image(void* mlx, int width, int height)
 	img.reference = mlx_new_image(mlx, width, height);
 	img.size.x = width;
 	img.size.x = height;
-	img.position.x = 0;
-	img.position.y = 0;
 
 	/* mlx function that returs a pointer to the first pixel of the given image.
 	* ¡Pixels are not stored in a 2D table, just a single char[] array!
@@ -32,8 +30,6 @@ t_image ft_new_sprite(void *mlx, char *path)
 	/* mlx function that creates and image that contains the xmp file found in the given path.
 	* It also saves the width and height of the image in the pointers passed as parameters */
 	img.reference = mlx_xpm_file_to_image(mlx, path, &img.size.x, &img.size.y);
-	img.position.x = 0;
-	img.position.y = 0;
 	img.pixels  = mlx_get_data_addr(img.reference, &img.bits_per_pixel, &img.line_size, &img.endian);
 	return (img);
 }
