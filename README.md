@@ -57,7 +57,7 @@ Some useful events:
 | 4 | Mouse pressed |
 | 5 | Mouse released |
 | 6 | Motion |
-| 14 | Window closed |
+| 17 | Window closed |
 
 By default when you close the window, you don’t stop the mlx_loop, so your program keeps infinitely running. You need to hook a function that makes ``exit(0);`` to the closing window event, for the program to end when the window is closed.
 
