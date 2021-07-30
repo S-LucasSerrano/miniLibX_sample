@@ -4,13 +4,21 @@ I developed this sample project to play around with the basic functionalities of
 Check my own version of _so_long_ here:
 https://github.com/S-LucasSerrano/so_long
 
+---
+* [Getting Started](#Getting-started)
+* [Hooks](#Hooks)
+* [Images](#Images)
+* [Colors](#Colors)
+* [Sample Program](#Sample-program)
+* [Other References](#References)
 
+---
 ### Getting started
 Include the miniLibX:
 ```c
 #include “mlx.h”
 ```
-First, we need to initialize the mlx with ``mlx_init()``, which returns a pointer (void *) that we need to save because a lot of the library functions need it in order to work.
+First, we need to initialize the mlx with ``mlx_init()``, that returns a pointer (void *) that we need to save because a lot of the library functions need it in order to work.
 ```c
 void	*mlx_pointer = mlx_init();
 ```
@@ -34,7 +42,7 @@ mlx_loop(mlx_pointer);
 
 Because the miniLibX uses Appkit and MX11 you need to link them adding ``-lmlx -framework OpenGL -framework AppKit`` when you compile.
 
-
+---
 ### Hooks
 The miniLibX allows you to _‘hook’_ some of your functions to certain events. So when those events happen, like pressing a key, closing or focusing a window, a function of yours is called. The most generic way to do it is with the ``mlx_hook()`` function, which has the following prototype:
 ```c
@@ -74,7 +82,7 @@ int	key_hooked_function(int keycode, void *param);
 There are also more hook functions. The most important and useful is the ``mlx_loop_hook()`` that triggers each repetition of the loop. Calling your function each frame. For more on these other hook functions see: 
 https://harm-smits.github.io/42docs/libs/minilibx/prototypes.html#hooks
 
-
+---
 ### Images
 There are a couple of functions that create and return you a pointer to an image. Which you need to save to draw or manipulate that image later. Those functions are:
 ````c
@@ -123,7 +131,7 @@ To draw the image on the window, you just have to call ``mlx_put_image_to_window
 mlx_put_image_to_window(void *window_ptr, void *image_ptr, int x_position, int y_position);
 ````
 
-
+---
 ### Colors
 Some functions, like `mlx_pixel_put()` or `mlx_string_put()` will ask you to pass a color as an int. This is referring to the hexadecimal value written like ``0xTTRRGGBB``. You can find the hexadecimal value of a color in any color selector, (search for _colour selector_ on google, it will also give you the RGB values of it). Take care that most of them only give you the hex value for the Red, Green and Blue. So you may need to add the transparency in front of those.
 You can generate your own hex colour values using bit shifting. More on that here:
@@ -132,8 +140,8 @@ https://harm-smits.github.io/42docs/libs/minilibx/colors.html
 And more on images and colours here:
 https://github.com/keuhdall/images_example
 
-
-### The basic program
+---
+### Sample Program
 As I said, the program included in this repository is just a square moving when the arrow keys are pressed.
 
 The program first initializes the mlx and opens a window, saving all data needed in a struct and hooking the function that ends the program to the event that closes the window.
@@ -146,7 +154,7 @@ Finally, it hooks specific functions to the key-pressed event and the repetition
 
 All the code is commented step by step, check it out! ^^^.
 
-
+---
 ### Makefile
 The Makefile has the following rules:
 | make  | |
@@ -157,7 +165,7 @@ The Makefile has the following rules:
 | fclean| Makes _clean_ and removes the _sample.out_ file |
 | re| Makes _fcleam_ and _all_ again |
 
-
+---
 ### References
 * https://gontjarow.github.io/MiniLibX/
 * https://harm-smits.github.io/42docs/libs/minilibx
@@ -171,7 +179,7 @@ miniLibX manuals:
 * man /usr/share/man/man3/mlx_new_image.1
 * man /usr/share/man/man3/mlx_loop.1
 
-
+---
 ### Contact
 Feel free to clone this project, check the code or contact me if you want or find something wrong or missing in this documentation.
 
