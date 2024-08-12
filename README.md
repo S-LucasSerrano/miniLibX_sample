@@ -181,6 +181,6 @@ miniLibX manuals:
 
 ---
 ### Contact
-Feel free to clone this project, check the code or contact me if you want or find something wrong or missing in this documentation.
+Check out my portfolio to see some of the cool things I'm up to → [s-lucasserrano.github.io/Portfolio/](https://s-lucasserrano.github.io/Portfolio/)
 
 Good luck with your projects!
